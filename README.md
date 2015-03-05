@@ -11,7 +11,8 @@ This code read and map one record from Clarion .DAT database.
       .Map("NUM_Q", x => x.Numbers)
       .Map("ANSWER", x => x.Answers);
       var file = new ClarionDatabase(filePath);
-      var result = file.ReadRecord(bindingMap);
+      var result = file.ReadRecord(bindingMap); //read first record
+	  file.Dispose();
 
 # License
 Apache License 2.0

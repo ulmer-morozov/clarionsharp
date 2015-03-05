@@ -74,6 +74,7 @@ namespace ClarionSharp
         {
             return ReadRecords(_header.NumRecs);
         }
+
         public IList<IClarionColumn> ReadRecord()
         {
             return ReadRecords(1);
@@ -87,13 +88,19 @@ namespace ClarionSharp
             return item;
         }
 
-        public IEnumerable<T> ReadRecords<T>(ClarionBindingMap<T> map, int recordCount)
+        public IList<T> ReadRecords<T>(ClarionBindingMap<T> map, uint recordCount)
             where T : new()
         {
             var records = ReadRecords(1);
             var mapper = new ClarionMapper();
             var items = mapper.MapRecords(map, records);
             return items;
+        }
+
+        public IList<T> ReadAllRecords<T>(ClarionBindingMap<T> map)
+            where T : new()
+        {
+            return ReadRecords<T>(map, _header.NumRecs);
         }
 
         #region Helpers

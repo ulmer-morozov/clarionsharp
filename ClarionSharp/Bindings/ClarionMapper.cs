@@ -19,7 +19,7 @@ namespace ClarionSharp.Bindings
             return record;
         }
 
-        public IEnumerable<T> MapRecords<T>(ClarionBindingMap<T> map, IList<IClarionColumn> columns)
+        public IList<T> MapRecords<T>(ClarionBindingMap<T> map, IList<IClarionColumn> columns)
             where T : new()
         {
             var recordsCount = columns.Select(x => x.Count).Distinct().Single();
