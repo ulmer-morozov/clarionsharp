@@ -46,6 +46,7 @@
     <Compile Include="ClarionArrayRecord.cs" />
     <Compile Include="ClarionDatabase.cs" />
     <Compile Include="Bindings\ClarionBinding.cs" />
+    <Compile Include="ClarionDate.cs" />
     <Compile Include="Columns\ByteArrayClarionColumn.cs" />
     <Compile Include="Columns\ByteClarionColumn.cs" />
     <Compile Include="Columns\ClarionArrayColumn.cs" />
