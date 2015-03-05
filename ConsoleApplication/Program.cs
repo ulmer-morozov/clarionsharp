@@ -19,6 +19,7 @@ namespace ConsoleApplication
 
             var file = new ClarionDatabase(filePath);
             var result = file.ReadRecord(bindingMap);
+
         }
     }
 }
