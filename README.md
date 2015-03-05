@@ -10,7 +10,7 @@ This code read and map one record from Clarion .DAT database.
       .Map("QUEST", x => x.QuestionCount)
       .Map("NUM_Q", x => x.Numbers)
       .Map("ANSWER", x => x.Answers);
-      var file = new ClarionDatabase(filePath);
+      var file = new ClarionDatabase(filePath, Encoding.ASCII);
       var result = file.ReadRecord(bindingMap); //read first record
 	  file.Dispose();
 

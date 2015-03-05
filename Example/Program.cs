@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Text;
 using ClarionSharp;
 using ClarionSharp.Bindings;
 
-namespace ConsoleApplication
+namespace Clarion.Example
 {
     class Program
     {
@@ -17,7 +18,7 @@ namespace ConsoleApplication
                 .Map("NUM_Q", x => x.Numbers)
                 .Map("ANSWER", x => x.Answers)
                 ;
-            using (var file = new ClarionDatabase(filePath))
+            using (var file = new ClarionDatabase(filePath, Encoding.ASCII))
             {
                 var result = file.ReadRecord(bindingMap);
                 Console.WriteLine("NUM_REG: {0} ", result.NumReg);

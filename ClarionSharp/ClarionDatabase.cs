@@ -12,6 +12,7 @@ namespace ClarionSharp
     {
         private readonly Stream _stream;
         private readonly BinaryReader _reader;
+        private readonly Encoding _encoding;
 
         private ClarionHeader _header;
         private IList<ClarionFieldRecord> _fields;
@@ -21,8 +22,9 @@ namespace ClarionSharp
 
         const int RecDataLengthInBytes = 5;
 
-        public ClarionDatabase(string filePath)
+        public ClarionDatabase(string filePath, Encoding encoding)
         {
+            _encoding = encoding;
             _stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             _reader = new BinaryReader(_stream);
             //
@@ -155,7 +157,7 @@ namespace ClarionSharp
             _reader.BaseStream.Seek(RecDataLengthInBytes, SeekOrigin.Current);
         }
 
-        private static IClarionColumn CreateColumnForField(ClarionFieldRecord field)
+        private IClarionColumn CreateColumnForField(ClarionFieldRecord field)
         {
             IClarionColumn column;
             if (field.IsNotArray)
@@ -163,7 +165,7 @@ namespace ClarionSharp
                 switch (field.Type)
                 {
                     case ClarionFieldType.String:
-                        column = new StringClarionColumn(field.FldNameString, Encoding.ASCII);
+                        column = new StringClarionColumn(field.FldNameString, _encoding);
                         break;
 
                     case ClarionFieldType.Short:

@@ -1,4 +1,4 @@
-﻿namespace ConsoleApplication
+﻿namespace Clarion.Example
 {
     public class AnswersData
     {

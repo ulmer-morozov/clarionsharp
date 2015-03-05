@@ -38,7 +38,6 @@ namespace ClarionSharp.Bindings
 
                     var memberExpression = GetMemberExpression(binding.FieldSelector.Body);
 
-
                     var prop = (PropertyInfo)(memberExpression.Member);
                     prop.SetValue(mappedRecord, value, null);
                 }
