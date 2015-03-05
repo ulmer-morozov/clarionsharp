@@ -23,7 +23,7 @@ namespace ClarionSharp
 
         public ClarionDatabase(string filePath)
         {
-            _stream = new FileStream(filePath, FileMode.Open);
+            _stream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             _reader = new BinaryReader(_stream);
             //
             ReadHeader();
