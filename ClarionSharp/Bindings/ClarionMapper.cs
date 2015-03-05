@@ -31,9 +31,8 @@ namespace ClarionSharp.Bindings
                 foreach (var column in columns)
                 {
                     if (!map.Bindings.ContainsKey(column.Name))
-                    {
-                        throw new Exception("Source database do not have column with name: " + column.Name);
-                    }
+                        continue;
+
                     var binding = map.Bindings[column.Name];
                     var value = column.GetValueAt(i);
 
