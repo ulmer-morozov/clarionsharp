@@ -1,5 +1,5 @@
 # clarionsharp
-safe, 100% .net clarion reader with object mapping.
+safe, 100% .net clarion reader with object mapping. Support Arrays!
 
 This code read and map one record from Clarion .DAT database.
 
