@@ -93,7 +93,7 @@ namespace ClarionSharp
         public IList<T> ReadRecords<T>(ClarionBindingMap<T> map, uint recordCount)
             where T : new()
         {
-            var records = ReadRecords(1);
+            var records = ReadRecords(recordCount);
             var mapper = new ClarionMapper();
             var items = mapper.MapRecords(map, records);
             return items;

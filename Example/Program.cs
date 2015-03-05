@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using ClarionSharp;
 using ClarionSharp.Bindings;
@@ -20,7 +21,8 @@ namespace Clarion.Example
                 ;
             using (var file = new ClarionDatabase(filePath, Encoding.ASCII))
             {
-                var result = file.ReadRecord(bindingMap);
+                var results = file.ReadAllRecords(bindingMap);
+                var result = results.First();
                 Console.WriteLine("NUM_REG: {0} ", result.NumReg);
                 Console.WriteLine("NUM_TEST: {0} ", result.NumTest);
                 Console.WriteLine("QUEST: {0} ", result.QuestionCount);
