@@ -7,6 +7,7 @@ namespace ClarionSharp
         private readonly Byte _fldType;// type of field
         private readonly char[] _fldName;//Char16; name of field
         private readonly string _fldNameString;
+        private readonly string _fieldNamePrefix;
         private readonly ushort _fOffset;//offset into record
         private readonly ushort _length;//length of field
         private readonly Byte _decSig;//significance for decimals
@@ -14,7 +15,9 @@ namespace ClarionSharp
         private readonly ushort _arrNum;//array number
         private readonly ushort _picNum;//picture number
 
-       public const string AnsiPrefix = "AN1:";
+        public const int PrefixLength = 3;
+        public const int PrefixWithDotesLength = PrefixLength + 1;
+
 
         public ClarionFieldRecord(byte fldType, char[] fldName, ushort fOffset, ushort length, byte decSig, byte decDec, ushort arrNum, ushort picNum)
             : this()
@@ -29,10 +32,11 @@ namespace ClarionSharp
             _picNum = picNum;
             //
             _fldNameString = new string(_fldName).Trim();
-            if (_fldNameString.StartsWith(AnsiPrefix))
-            {
-                _fldNameString = _fldNameString.Substring(AnsiPrefix.Length);
-            }
+            if (_fldNameString.Length <= PrefixWithDotesLength)
+                return;
+            //read prefix
+            _fieldNamePrefix = _fldNameString.Substring(0, PrefixLength);
+            _fldNameString = _fldNameString.Substring(PrefixWithDotesLength);
         }
 
         public byte FldType
