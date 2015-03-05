@@ -1,4 +1,5 @@
-﻿using ClarionSharp;
+﻿using System;
+using ClarionSharp;
 using ClarionSharp.Bindings;
 
 namespace ConsoleApplication
@@ -16,10 +17,16 @@ namespace ConsoleApplication
                 .Map("NUM_Q", x => x.Numbers)
                 .Map("ANSWER", x => x.Answers)
                 ;
-
-            var file = new ClarionDatabase(filePath);
-            var result = file.ReadRecord(bindingMap);
-
+            using (var file = new ClarionDatabase(filePath))
+            {
+                var result = file.ReadRecord(bindingMap);
+                Console.WriteLine("NUM_REG: {0} ", result.NumReg);
+                Console.WriteLine("NUM_TEST: {0} ", result.NumTest);
+                Console.WriteLine("QUEST: {0} ", result.QuestionCount);
+                Console.WriteLine("NUM_Q: {0} ", string.Join(",", result.Numbers));
+                Console.WriteLine("ANSWER: {0} ", string.Join(",", result.Answers));
+            }
+            Console.ReadLine();
         }
     }
 }
