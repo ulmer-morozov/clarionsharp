@@ -30,6 +30,10 @@ namespace ClarionSharp.Bindings
                 var mappedRecord = new T();
                 foreach (var column in columns)
                 {
+                    if (!map.Bindings.ContainsKey(column.Name))
+                    {
+                        throw new Exception("Source database do not have column with name: " + column.Name);
+                    }
                     var binding = map.Bindings[column.Name];
                     var value = column.GetValueAt(i);
 
@@ -55,7 +59,7 @@ namespace ClarionSharp.Bindings
                 {
                     return ((MemberExpression)expr);
                 }
-                else if (expr is UnaryExpression)
+                if (expr is UnaryExpression)
                 {
                     candidates.Enqueue(((UnaryExpression)expr).Operand);
                 }
