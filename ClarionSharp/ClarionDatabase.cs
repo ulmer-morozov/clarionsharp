@@ -172,6 +172,10 @@ namespace ClarionSharp
                         column = new ShortClarionColumn(field.FldNameString);
                         break;
 
+                    case ClarionFieldType.Byte:
+                        column = new ByteClarionColumn(field.FldNameString);
+                        break;
+
                     default:
                         throw new NotImplementedException("Не могу создать столбец для этого типа! " + field.Type + " | " + field.FldType);
 
